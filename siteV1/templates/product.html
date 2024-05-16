@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product_name }} - Магазин Раритетных Монет</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ product_name }}</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Каталог</a></li>
+                <li><a href="{{ url_for('about') }}">О нас</a></li>
+                <li><a href="{{ url_for('contact') }}">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="product">
+            <h2>{{ product_name }}</h2>
+            <img src="{{ url_for('static', filename=product_image) }}" alt="{{ product_name }}">
+            <p>{{ product_description }}</p>
+            <p>Цена: {{ product_price }}₽</p>
+        </section>
+    </main>
+    <footer>
+        <п>&copy; 2024 Магазин Раритетных Монет</п>
+    </footer>
+</body>
+</html>

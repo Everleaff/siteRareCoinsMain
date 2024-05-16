@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Магазин Раритетных Монет</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>RareCoinsShop</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fas fa-address-book"></i> Контакты</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Войти</a></li>
+                    <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="contact">
+            <h2>Контакты</h2>
+            <p>Вы можете связаться с нами, используя следующую информацию:</p>
+
+            <h3>Адрес</h3>
+            <p>12345 Улица Монет, Город, Страна, 123456</p>
+
+            <h3>Телефон</h3>
+            <p>+1 (123) 456-7890</p>
+
+            <h3>Электронная почта</h3>
+            <p><a href="mailto:info@coinstore.com">info@coinstore.com</a></p>
+
+            <h3>Часы работы</h3>
+            <p>Понедельник - Пятница: 9:00 - 18:00<br>
+               Суббота: 10:00 - 16:00<br>
+               Воскресенье: Закрыто</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Магазин Раритетных Монет</p>
+    </footer>
+</body>
+</html>

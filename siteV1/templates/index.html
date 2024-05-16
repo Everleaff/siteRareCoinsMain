@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RareCoinsShop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="RareCoinsShop Logo" class="logo">
+            <h1>RareCoinsShop</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fas fa-address-book"></i> Контакты</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Войти</a></li>
+                    <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="filters">
+            <h2>Фильтры</h2>
+            <label for="country-filter">Страна:</label>
+            <select id="country-filter">
+                <option value="">Все</option>
+                <option value="Russia">Россия</option>
+                <option value="USA">США</option>
+                <option value="Germany">Германия</option>
+            </select>
+
+            <label for="year-filter">Год:</label>
+            <input type="number" id="year-filter" min="1800" max="2024">
+
+            <label for="price-filter">Цена до:</label>
+            <input type="number" id="price-filter" min="0">
+
+            <button id="filter-btn">Применить фильтр</button>
+        </section>
+        <section id="catalog">
+            <h2>Каталог Монет</h2>
+            <div class="coins">
+                <article class="coin" data-country="Russia" data-year="1900" data-price="1000">
+                    <a href="{{ url_for('product', product_id=1) }}">
+                        <img src="{{ url_for('static', filename='images/coin1.jpg') }}" alt="Монета 1">
+                        <h3>Монета 1</h3>
+                        <p>Описание монеты 1.</p>
+                        <p>1000 ₽</p>
+                    </a>
+                    <label for="quantity-1">Количество:</label>
+                    <input type="number" id="quantity-1" name="quantity" min="1" value="1">
+                    <button data-id="1" data-name="Монета 1" data-price="1000">Добавить</button>
+                </article>
+                <article class="coin" data-country="USA" data-year="1950" data-price="1500">
+                    <a href="{{ url_for('product', product_id=2) }}">
+                        <img src="{{ url_for('static', filename='images/coin2.jpg') }}" alt="Монета 2">
+                        <h3>Монета 2</h3>
+                        <p>Описание монеты 2.</p>
+                        <p>1500 ₽</p>
+                    </a>
+                    <label for="quantity-2">Количество:</label>
+                    <input type="number" id="quantity-2" name="quantity" min="1" value="1">
+                    <button data-id="2" data-name="Монета 2" data-price="1500">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1900" data-price="10000">
+                    <a href="{{ url_for('product', product_id=3) }}">
+                        <img src="{{ url_for('static', filename='images/coin3.jpg') }}" alt="Монета 3">
+                        <h3>Монета 3</h3>
+                        <p>Описание монеты 3.</p>
+                        <p>10000 ₽</p>
+                    </a>
+                    <label for="quantity-3">Количество:</label>
+                    <input type="number" id="quantity-3" name="quantity" min="1" value="1">
+                    <button data-id="3" data-name="Монета 3" data-price="10000">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1940" data-price="2000">
+                    <a href="{{ url_for('product', product_id=4) }}">
+                        <img src="{{ url_for('static', filename='images/coin4.jpg') }}" alt="Монета 4">
+                        <h3>Монета 4</h3>
+                        <p>Описание монеты 4.</p>
+                        <p>2000 ₽</p>
+                    </a>
+                    <label for="quantity-4">Количество:</label>
+                    <input type="number" id="quantity-4" name="quantity" min="1" value="1">
+                    <button data-id="4" data-name="Монета 4" data-price="2000">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1932" data-price="22000">
+                    <a href="{{ url_for('product', product_id=5) }}">
+                        <img src="{{ url_for('static', filename='images/coin5.jpg') }}" alt="Монета 5">
+                        <h3>Монета 5</h3>
+                        <p>Описание монеты 5.</p>
+                        <p>22000 ₽</p>
+                    </a>
+                    <label for="quantity-5">Количество:</label>
+                    <input type="number" id="quantity-5" name="quantity" min="1" value="1">
+                    <button data-id="5" data-name="Монета 5" data-price="22000">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1901" data-price="4000">
+                    <a href="{{ url_for('product', product_id=6) }}">
+                        <img src="{{ url_for('static', filename='images/coin6.jpg') }}" alt="Монета 6">
+                        <h3>Монета 6</h3>
+                        <p>Описание монеты 6.</p>
+                        <p>4000 ₽</p>
+                    </a>
+                    <label for="quantity-6">Количество:</label>
+                    <input type="number" id="quantity-6" name="quantity" min="1" value="1">
+                    <button data-id="6" data-name="Монета 1" data-price="4000">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1911" data-price="7500">
+                    <a href="{{ url_for('product', product_id=7) }}">
+                        <img src="{{ url_for('static', filename='images/coin7.jpg') }}" alt="Монета 7">
+                        <h3>Монета 7</h3>
+                        <p>Описание монеты 7.</p>
+                        <p>1000 ₽</p>
+                    </a>
+                    <label for="quantity-1">Количество:</label>
+                    <input type="number" id="quantity-7" name="quantity" min="1" value="1">
+                    <button data-id="7" data-name="Монета 7" data-price="7500">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1900" data-price="8000">
+                    <a href="{{ url_for('product', product_id=8) }}">
+                        <img src="{{ url_for('static', filename='images/coin8.jpg') }}" alt="Монета 8">
+                        <h3>Монета 8</h3>
+                        <p>Описание монеты 8.</p>
+                        <p>8000 ₽</p>
+                    </a>
+                    <label for="quantity-8">Количество:</label>
+                    <input type="number" id="quantity-8" name="quantity" min="1" value="1">
+                    <button data-id="8" data-name="Монета 8" data-price="8000">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1900" data-price="3000">
+                    <a href="{{ url_for('product', product_id=9) }}">
+                        <img src="{{ url_for('static', filename='images/coin9.jpg') }}" alt="Монета 9">
+                        <h3>Монета 9</h3>
+                        <p>Описание монеты 9.</p>
+                        <p>3000 ₽</p>
+                    </a>
+                    <label for="quantity-9">Количество:</label>
+                    <input type="number" id="quantity-9" name="quantity" min="1" value="1">
+                    <button data-id="9" data-name="Монета 9" data-price="3000">Добавить</button>
+                </article>
+                <article class="coin" data-country="Russia" data-year="1900" data-price="6000">
+                    <a href="{{ url_for('product', product_id=10) }}">
+                        <img src="{{ url_for('static', filename='images/coin10.jpg') }}" alt="Монета 10">
+                        <h3>Монета 10</h3>
+                        <p>Описание монеты 10.</p>
+                        <p>6000 ₽</p>
+                    </a>
+                    <label for="quantity-10">Количество:</label>
+                    <input type="number" id="quantity-10" name="quantity" min="1" value="1">
+                    <button data-id="10" data-name="Монета 10" data-price="6000">Добавить</button>
+                </article>
+
+            </div>
+        </section>
+        <section id="cart">
+            <h2>Корзина</h2>
+            <div id="cart-items"></div>
+            <p id="total-price">Итоговая сумма: 0₽</p>
+            <button id="clear-cart">Очистить корзину</button>
+            <button id="checkout">Оформить заказ</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Магазин Раритетных Монет</p>
+    </footer>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
